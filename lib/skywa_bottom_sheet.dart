@@ -7,6 +7,7 @@ class SkywaBottomSheet {
   final Color color;
   final Widget content;
   final EdgeInsetsGeometry? contentPadding;
+  final Function? onClosed;
 
   SkywaBottomSheet({
     required this.context,
@@ -15,6 +16,7 @@ class SkywaBottomSheet {
     this.color = Colors.white,
     required this.content,
     this.contentPadding,
+    this.onClosed,
   }) {
     displayBottomSheet();
   }
@@ -25,22 +27,35 @@ class SkywaBottomSheet {
       isScrollControlled: isScrollControlled,
       isDismissible: isDismissible,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
+      builder: (BuildContext buildContext) {
         return Container(
-          padding: contentPadding ??
+          /*padding: contentPadding ??
               EdgeInsets.only(
                 top: 10.0,
                 right: 10.0,
                 left: 10.0,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
+                bottom: MediaQuery.of(buildContext).viewInsets.bottom,
+              ),*/
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(12.0),
+            ),
           ),
-          child: content,
+          child: Container(
+            padding: contentPadding ??
+                const EdgeInsets.only(
+                  top: 10.0,
+                  right: 10.0,
+                  left: 10.0,
+                ),
+            child: content,
+          ),
         );
       },
-    );
+    ).then((value) => onClosed != null ? onClosed!() : null);
   }
 }

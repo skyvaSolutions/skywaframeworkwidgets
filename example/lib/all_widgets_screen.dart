@@ -3,6 +3,7 @@ import 'package:skywaframeworkwidgets/skywa_appbar.dart';
 import 'package:skywaframeworkwidgets/skywa_bottom_sheet.dart';
 import 'package:skywaframeworkwidgets/skywa_elevated_button.dart';
 import 'package:skywaframeworkwidgets/skywa_text.dart';
+import 'package:skywaframeworkwidgets/skywa_textformfield.dart';
 import 'package:skywaframeworkwidgets_example/sample_rich_texts_screen.dart';
 import 'package:skywaframeworkwidgets_example/skywa_phone_no_input_field_screen.dart';
 
@@ -172,6 +173,13 @@ class _AllWidgetsScreenState extends State<AllWidgetsScreen> {
               SkywaBottomSheet(
                 context: context,
                 isDismissible: false,
+                contentPadding: EdgeInsets.only(
+                  top: 10.0,
+                  right: 10.0,
+                  left: 10.0,
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                isScrollControlled: true,
                 content: ListView(
                   shrinkWrap: true,
                   children: [
@@ -180,6 +188,20 @@ class _AllWidgetsScreenState extends State<AllWidgetsScreen> {
                         'Sample Bottom Sheet',
                         fontSize: 20.0,
                         fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Container(
+                      margin: const EdgeInsets.only(
+                        left: 8.0,
+                        bottom: 10.0,
+                        right: 8.0,
+                        top: 4.0,
+                      ),
+                      child: SkywaTextFormField.text(
+                        textEditingController: TextEditingController(),
+                        labelText: 'Sample',
+                        autofocus: true,
                       ),
                     ),
                     const SizedBox(height: 10.0),
@@ -192,6 +214,7 @@ class _AllWidgetsScreenState extends State<AllWidgetsScreen> {
                     const SizedBox(height: 10.0),
                   ],
                 ),
+                onClosed: () => print('closed'),
               );
             },
           ),
