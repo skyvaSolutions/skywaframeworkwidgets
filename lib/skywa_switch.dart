@@ -35,7 +35,7 @@ class SkywaSwitch extends StatelessWidget {
         ? SwitchListTile(
             value: value,
             onChanged: enabled ? onChanged : null,
-            activeColor: Theme.of(context).primaryColor,
+            activeColor: activeColor ?? Theme.of(context).primaryColor,
             contentPadding: padding ?? EdgeInsets.zero,
             inactiveThumbColor:
                 enabled ? Colors.grey.shade50 : Colors.grey.shade200,
