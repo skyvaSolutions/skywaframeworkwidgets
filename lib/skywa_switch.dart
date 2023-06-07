@@ -12,6 +12,7 @@ class SkywaSwitch extends StatelessWidget {
   final ValueChanged<bool> onChanged;
   final bool enabled;
   final Color textColor;
+  final Color? activeColor;
   final EdgeInsets? padding;
 
   const SkywaSwitch({
@@ -24,6 +25,7 @@ class SkywaSwitch extends StatelessWidget {
     this.fontWeight,
     this.enabled = true,
     this.textColor = Colors.black,
+    this.activeColor,
     this.padding,
   }) : super(key: key);
 
@@ -50,7 +52,7 @@ class SkywaSwitch extends StatelessWidget {
         : Switch(
             value: value,
             onChanged: enabled ? onChanged : null,
-            activeColor: Theme.of(context).primaryColor,
+            activeColor: activeColor ?? Theme.of(context).primaryColor,
             inactiveThumbColor:
                 enabled ? Colors.grey.shade50 : Colors.grey.shade200,
             inactiveTrackColor:
